@@ -113,7 +113,7 @@ pallet-whitelist = { version = "4.0.0-dev", default-features = false, path = "..
 
 
 pallet-xcm ={ git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
-pallet-xcm-benchmarks = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
+# pallet-xcm-benchmarks = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
 xcm = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
 xcm-executor = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
 xcm-builder = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
