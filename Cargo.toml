@@ -8,6 +8,8 @@ members = [
 	"bin/node/bench",
 	"bin/node/cli",
 	"bin/node/executor",
+	"parachain",
+	"core-primitives",
 	"bin/node/inspect",
 	"bin/node/primitives",
 	"bin/node/rpc",

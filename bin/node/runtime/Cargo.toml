@@ -112,11 +112,17 @@ pallet-vesting = { version = "4.0.0-dev", default-features = false, path = "../.
 pallet-whitelist = { version = "4.0.0-dev", default-features = false, path = "../../../frame/whitelist" }
 
 
-pallet-xcm ={ git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
+pallet-xcm ={ default-features = false, path = "../../../xcm/pallet-xcm"}
 # pallet-xcm-benchmarks = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
-xcm = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
-xcm-executor = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
-xcm-builder = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.36" }
+xcm = { default-features = false, path = "../../../xcm" }
+xcm-executor = {default-features = false, path = "../../../xcm/xcm-executor" }
+xcm-builder = { default-features = false, path = "../../../xcm/xcm-builder" }
+
+runtime-common = { package = "polkadot-runtime-common", default-features = false, path = "../../common" }
+runtime-parachains = { package = "polkadot-runtime-parachains", default-features = false, path = "../../parachains" }
+primitives = { package = "polkadot-primitives",default-features = false, path = "../../../core-primitives/primitives" }
+polkadot-parachain = {  default-features = false, path = "../../../parachain" } 
+
 
 [build-dependencies]
 substrate-wasm-builder = { version = "5.0.0-dev", path = "../../../utils/wasm-builder" }
@@ -141,9 +147,11 @@ std = [
 	"pallet-balances/std",
 	"pallet-bounties/std",
 	"sp-block-builder/std",
+	"primitives/std",
 	"codec/std",
 	"scale-info/std",
 	"pallet-collective/std",
+	"runtime-parachains/std",
 	"pallet-contracts/std",
 	"pallet-contracts-primitives/std",
 	"pallet-conviction-voting/std",
@@ -152,11 +160,13 @@ std = [
 	"pallet-fast-unstake/std",
 	"frame-executive/std",
 	"pallet-nis/std",
+	"runtime-common/std",
 	"pallet-grandpa/std",
 	"pallet-im-online/std",
 	"pallet-indices/std",
 	"sp-inherents/std",
 	"pallet-lottery/std",
+	"polkadot-parachain/std",
 	"pallet-membership/std",
 	# "pallet-message-queue/std",
 	"pallet-xcm/std",
@@ -218,10 +228,12 @@ std = [
 runtime-benchmarks = [
 	"frame-benchmarking/runtime-benchmarks",
 	"frame-support/runtime-benchmarks",
+	"runtime-parachains/runtime-benchmarks",	
 	"frame-system/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 	"pallet-alliance/runtime-benchmarks",
 	"pallet-assets/runtime-benchmarks",
+	"runtime-common/runtime-benchmarks",
 	"pallet-babe/runtime-benchmarks",
 	"pallet-bags-list/runtime-benchmarks",
 	"pallet-balances/runtime-benchmarks",
@@ -289,6 +301,7 @@ try-runtime = [
 	"pallet-contracts/try-runtime",
 	"pallet-conviction-voting/try-runtime",
 	"pallet-democracy/try-runtime",
+		"runtime-common/try-runtime",
 	"pallet-election-provider-multi-phase/try-runtime",
 	"pallet-elections-phragmen/try-runtime",
 	"pallet-fast-unstake/try-runtime",
@@ -329,3 +342,4 @@ try-runtime = [
 	"pallet-vesting/try-runtime",
 	"pallet-whitelist/try-runtime",
 ]
+runtime-metrics = ["runtime-parachains/runtime-metrics", "sp-io/with-tracing"]

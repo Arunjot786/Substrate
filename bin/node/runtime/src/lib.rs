@@ -45,6 +45,7 @@ use frame_support::{
 	},
 	PalletId, RuntimeDebug,
 };
+//  mod xcm_config;
 use frame_system::{
 	limits::{BlockLength, BlockWeights},
 	EnsureRoot, EnsureRootWithSuccess, EnsureSigned, EnsureWithSuccess,
@@ -97,6 +98,16 @@ pub mod impls;
 #[cfg(not(feature = "runtime-benchmarks"))]
 use impls::AllianceIdentityVerifier;
 use impls::{AllianceProposalProvider, Author, CreditToBlockAuthor};
+
+// use runtime_parachains::{
+// 	configuration as parachains_configuration, disputes as parachains_disputes,
+// 	disputes::slashing as parachains_slashing, dmp as parachains_dmp, hrmp as parachains_hrmp,
+// 	inclusion as parachains_inclusion, initializer as parachains_initializer,
+// 	origin as parachains_origin, paras as parachains_paras,
+// 	paras_inherent as parachains_paras_inherent,
+// 	runtime_api_impl::v2 as parachains_runtime_api_impl, scheduler as parachains_scheduler,
+// 	session_info as parachains_session_info, shared as parachains_shared, ump as parachains_ump,
+// };
 
 /// Constant values used within the runtime.
 pub mod constants;
@@ -505,7 +516,12 @@ impl_opaque_keys! {
 		pub authority_discovery: AuthorityDiscovery,
 	}
 }
+// impl parachains_origin::Config for Runtime {}
 
+
+// impl parachains_configuration::Config for Runtime {
+// 	type WeightInfo = weights::runtime_parachains_configuration::WeightInfo<Runtime>;
+// }
 impl pallet_session::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
 	type ValidatorId = <Self as frame_system::Config>::AccountId;
@@ -1720,6 +1736,11 @@ construct_runtime!(
 		RankedCollective: pallet_ranked_collective,
 		FastUnstake: pallet_fast_unstake,
 		MessageQueue: pallet_message_queue,
+
+		
+		// Parachains pallets. Start indices at 50 to leave room.
+		// ParachainsOrigin: parachains_origin,
+		// Configuration: parachains_configuration
 	}
 );
 
